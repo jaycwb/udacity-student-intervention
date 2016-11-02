@@ -11787,7 +11787,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
@@ -11839,7 +11839,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Let&#39;s look at the header</span>
@@ -11852,7 +11852,7 @@ div#notebook {
 <span class="c1"># Calculate number of features, i.e. the number of attributes minus 1 (the class feature)</span>
 <span class="n">n_features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
 
-<span class="c1"># TODO: Calculate passing students</span>
+<span class="c1"># Calculate passing students</span>
 <span class="n">pass_students</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">student_data</span><span class="o">.</span><span class="n">passed</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;passed&#39;</span><span class="p">]</span>
 <span class="n">n_passed</span> <span class="o">=</span> <span class="n">pass_students</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -11862,12 +11862,17 @@ div#notebook {
 <span class="c1"># Calculate graduation rate</span>
 <span class="n">grad_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">n_passed</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">n_students</span><span class="p">)</span>
 
+<span class="c1"># Compute F1 score for predicting all as &#39;yes&#39;</span>
+<span class="n">zeroRScore</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_true</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">n_passed</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;no&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">n_failed</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">n_students</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">)</span>
+
+
 <span class="c1"># Print the results</span>
 <span class="k">print</span> <span class="s2">&quot;Total number of students: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_students</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Number of features: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_features</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Number of students who passed: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_passed</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Number of students who failed: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_failed</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Graduation rate of the class: {:.2f}%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grad_rate</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;F1 score for predicting all &#39;yes&#39;: {:.4f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">zeroRScore</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11885,6 +11890,7 @@ Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
 Graduation rate of the class: 67.09%
+F1 score for predicting all &#39;yes&#39;: 0.8030
 </pre>
 </div>
 </div>
@@ -11907,7 +11913,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -11989,7 +11995,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12070,7 +12076,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import any additional functionality you may need here</span>
@@ -12141,9 +12147,9 @@ Testing set has 95 samples.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong> Determining which algorithms should be applied to this data set is not trivial. This occurs due to the fact that the dataset is unbalanced (aprox 67%-33%), has very few instances (395) and a fair amount of attributes (30), which may cause some algorithms to fall into the "curse of dimensionality" [1].</p>
-<p>1- <strong>(Naive Bayes)</strong> Given these characteristics, the first choice would be the Naive Bayes classifier, which is known for being a good choice on high-dimensional data, is fast to compute and if widely used in real-world applications, such as: text classification [2], emotion detection [3] and many more. As strengths of Naive Bayes, it is mentioned: easy to train and implement, low model complexity. And as cons: no variable dependency, which is unjustified for most of real-world data. Multinomial NB is used here since all attributes were converted into categorical ones, so no approximation such as the GaussianNB is needed here.</p>
-<p>2- <strong>(K-Nearest Neighbors)</strong> kNN is a family of lazy learners that classify instances given the k closest records stored in buffer. The definition of close means that a distance metric is used to determine how similar two records are. kNN is so widely used that is hard to list all of its applications, so a few are as follows: heart disease classification [4] and stock price prediction [5, 6]. Even though kNN is strongly subject to the curse of dimensionality, it is able to learn complex decision borders, and thus, it should be evaluated. Furthermore, kNN (and some of its variations) obtained quite successful accuracy rates in very high-dimensional data streams, as shown in [6]. Strengths of kNN include: simple implementation, flexibility to different distance metrics, is able to depict complex decision borders and handles multi-class problems (even though it's not the case here). As cons: is problematic in high-dimensional problems due to the curse of dimensionality, is computationally expensive for queries in the $O(nd)$ order, where $n$ is the number of training points and $d$ their dimensionality and requires a meaningful distance metric.</p>
-<p>3- <strong>(Decision Tree)</strong> Decision trees represent a family of algorithms that learn classification models by performing multiple feature selections until a purity level amongst a subset of instances is obtained. Decision trees are interesting since their final model is easily readable and is able to overcome both irrelevant and redundant features quite succesfully [7]. Aditionally, since the final model is readable, it can be verified by experts on the field to check if the used attributes and the tested values in each branch of the tree make sense. Applications of decision trees are also colossal, broadening agriculture to even software development [8]. Pros of decision trees include: low (or no) need to select features before training, readability (since they are white-boxes), and low cost for model construction. As cons: instability (since small variations in the training input lead to different trees, which is an appropriate trait for ensembles), trees tend to grow unwiedly given the number of trees, which is problematic since larger trees are hard to read and hard to explain.</p>
+<p>1- <strong>(Naive Bayes)</strong> Given these characteristics, the first choice would be the Naive Bayes classifier, which is known for being a good choice on high-dimensional data, is fast to compute and if widely used in real-world applications, such as: text classification [2], emotion detection [3] and many more. As strengths of Naive Bayes, it is mentioned: easy to train and implement, low model complexity. And as cons: no variable dependency, which is unjustified for most of real-world data. Multinomial NB is used here since all attributes were converted into categorical ones, so no approximation such as the GaussianNB is needed. Furthermore, Naive Bayes is extremely simple and is expected to work well given the number of attributes in the evaluated data set.</p>
+<p>2- <strong>(K-Nearest Neighbors)</strong> kNN is a family of lazy learners that classify instances given the k closest records stored in buffer. The definition of close means that a distance metric is used to determine how similar two records are. kNN is so widely used that is hard to list all of its applications, so a few are as follows: heart disease classification [4] and stock price prediction [5, 6]. Even though kNN is strongly subject to the curse of dimensionality, it is able to learn complex decision borders, and thus, it should be evaluated. Furthermore, kNN (and some of its variations) obtained quite successful accuracy rates in very high-dimensional data streams, as shown in [6]. Strengths of kNN include: simple implementation, flexibility to different distance metrics, is able to depict complex decision borders and handles multi-class problems (even though it's not the case here). As cons: is problematic in high-dimensional problems due to the curse of dimensionality, is computationally expensive for queries in the $O(nd)$ order, where $n$ is the number of training points and $d$ their dimensionality and requires a meaningful distance metric. kNN was used in this project since it is simple, and also because of it's underlying rationale, that students with similar behavior are likely to have the same outcome (passing or failing).</p>
+<p>3- <strong>(Decision Tree)</strong> Decision trees represent a family of algorithms that learn classification models by performing multiple feature selections until a purity level amongst a subset of instances is obtained. Decision trees are interesting since their final model is easily readable and is able to overcome both irrelevant and redundant features quite succesfully [7]. Aditionally, since the final model is readable, it can be verified by experts on the field to check if the used attributes and the tested values in each branch of the tree make sense. Applications of decision trees are also colossal, broadening agriculture to even software development [8]. Pros of decision trees include: low (or no) need to select features before training, readability (since they are white-boxes), and low cost for model construction. As cons: instability (since small variations in the training input lead to different trees, which is an appropriate trait for ensembles), trees tend to grow unwiedly given the number of trees, which is problematic since larger trees are hard to read and hard to explain. Decision tree was used in this project since readability would be important to allow the explanation of how the model predicts whether students are likely to fail or not, and as kNN, it is also able to learn complex decision boundaries, which might be the case here.</p>
 <p>[1] <a href="http://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">http://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/</a></p>
 <p>[2] <a href="https://web.stanford.edu/class/cs124/lec/naivebayes.pdf">https://web.stanford.edu/class/cs124/lec/naivebayes.pdf</a></p>
 <p>[3] <a href="http://www.ifp.illinois.edu/~iracohen/publications/icpr02.pdf">http://www.ifp.illinois.edu/~iracohen/publications/icpr02.pdf</a></p>
@@ -12176,7 +12182,7 @@ Testing set has 95 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12249,7 +12255,7 @@ Testing set has 95 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import the three supervised learning models from sklearn</span>
@@ -12297,58 +12303,58 @@ Testing set has 95 samples.
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training a MultinomialNB using a training set size of 100. . .
-Trained model in 0.0011 seconds
-Made predictions in 0.0002 seconds.
+Trained model in 0.0021 seconds
+Made predictions in 0.0003 seconds.
 F1 score for training set: 0.7794.
-Made predictions in 0.0002 seconds.
+Made predictions in 0.0003 seconds.
 F1 score for test set: 0.8058.
 Training a MultinomialNB using a training set size of 200. . .
-Trained model in 0.0009 seconds
+Trained model in 0.0011 seconds
 Made predictions in 0.0003 seconds.
 F1 score for training set: 0.8042.
 Made predictions in 0.0002 seconds.
 F1 score for test set: 0.8058.
 Training a MultinomialNB using a training set size of 300. . .
-Trained model in 0.0018 seconds
-Made predictions in 0.0007 seconds.
+Trained model in 0.0015 seconds
+Made predictions in 0.0005 seconds.
 F1 score for training set: 0.8056.
-Made predictions in 0.0004 seconds.
+Made predictions in 0.0005 seconds.
 F1 score for test set: 0.8235.
 Training a KNeighborsClassifier using a training set size of 100. . .
-Trained model in 0.0010 seconds
-Made predictions in 0.0029 seconds.
-F1 score for training set: 0.7917.
+Trained model in 0.0009 seconds
 Made predictions in 0.0019 seconds.
+F1 score for training set: 0.7917.
+Made predictions in 0.0017 seconds.
 F1 score for test set: 0.7571.
 Training a KNeighborsClassifier using a training set size of 200. . .
-Trained model in 0.0006 seconds
-Made predictions in 0.0039 seconds.
+Trained model in 0.0007 seconds
+Made predictions in 0.0037 seconds.
 F1 score for training set: 0.8132.
 Made predictions in 0.0024 seconds.
 F1 score for test set: 0.7737.
 Training a KNeighborsClassifier using a training set size of 300. . .
-Trained model in 0.0020 seconds
-Made predictions in 0.0078 seconds.
+Trained model in 0.0013 seconds
+Made predictions in 0.0068 seconds.
 F1 score for training set: 0.8545.
-Made predictions in 0.0034 seconds.
+Made predictions in 0.0028 seconds.
 F1 score for test set: 0.8108.
 Training a DecisionTreeClassifier using a training set size of 100. . .
-Trained model in 0.0011 seconds
-Made predictions in 0.0004 seconds.
-F1 score for training set: 1.0000.
+Trained model in 0.0008 seconds
 Made predictions in 0.0003 seconds.
+F1 score for training set: 1.0000.
+Made predictions in 0.0002 seconds.
 F1 score for test set: 0.7407.
 Training a DecisionTreeClassifier using a training set size of 200. . .
-Trained model in 0.0015 seconds
-Made predictions in 0.0005 seconds.
+Trained model in 0.0013 seconds
+Made predictions in 0.0006 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0004 seconds.
+Made predictions in 0.0002 seconds.
 F1 score for test set: 0.6667.
 Training a DecisionTreeClassifier using a training set size of 300. . .
-Trained model in 0.0022 seconds
+Trained model in 0.0019 seconds
 Made predictions in 0.0005 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0003 seconds.
+Made predictions in 0.0002 seconds.
 F1 score for test set: 0.7077.
 </pre>
 </div>
@@ -12555,12 +12561,15 @@ F1 score for test set: 0.7077.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import &#39;gridSearchCV&#39; and &#39;make_scorer&#39;</span>
 <span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
+
+<span class="c1"># for displaying the heatmap</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
 
 <span class="c1"># I will tune all three classifiers in here, </span>
 <span class="c1"># so I wrote some extra code to tune each classifier</span>
@@ -12595,7 +12604,8 @@ F1 score for test set: 0.7077.
                         <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>\
                         <span class="n">scoring</span><span class="o">=</span><span class="n">f1_scorer</span><span class="p">)</span>
     <span class="n">grid_obj</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="n">clf</span> <span class="o">=</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">best_estimator_</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">best_estimator_</span>    
+    <span class="c1"># display(pd.DataFrame(grid_obj.grid_scores_))</span>
     <span class="k">print</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Tuned model has a training F1 score of {:.4f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
     <span class="k">print</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Tuned model has a testing F1 score of {:.4f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
 
@@ -12618,17 +12628,17 @@ F1 score for test set: 0.7077.
 <pre>Tuning MultinomialNB
 Made predictions in 0.0005 seconds.
 	Tuned model has a training F1 score of 0.8000.
-Made predictions in 0.0003 seconds.
+Made predictions in 0.0002 seconds.
 	Tuned model has a testing F1 score of 0.8235.
 Tuning KNeighborsClassifier
-Made predictions in 0.0315 seconds.
+Made predictions in 0.0280 seconds.
 	Tuned model has a training F1 score of 0.8387.
-Made predictions in 0.0102 seconds.
+Made predictions in 0.0113 seconds.
 	Tuned model has a testing F1 score of 0.7891.
 Tuning DecisionTreeClassifier
-Made predictions in 0.0004 seconds.
+Made predictions in 0.0005 seconds.
 	Tuned model has a training F1 score of 1.0000.
-Made predictions in 0.0004 seconds.
+Made predictions in 0.0003 seconds.
 	Tuned model has a testing F1 score of 0.7385.
 </pre>
 </div>
@@ -12637,6 +12647,88 @@ Made predictions in 0.0004 seconds.
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Suggestion-of-first-project-reviewer:-Classification-Report">Suggestion of first project reviewer: Classification Report<a class="anchor-link" href="#Suggestion-of-first-project-reviewer:-Classification-Report">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">classifiers</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Report for {}:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+    <span class="k">print</span> <span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">52</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Report for MultinomialNB:
+
+             precision    recall  f1-score   support
+
+         no       0.65      0.48      0.56        31
+        yes       0.78      0.88      0.82        64
+
+avg / total       0.74      0.75      0.74        95
+
+----------------------------------------------------
+
+Report for KNeighborsClassifier:
+
+             precision    recall  f1-score   support
+
+         no       0.64      0.23      0.33        31
+        yes       0.71      0.94      0.81        64
+
+avg / total       0.69      0.71      0.66        95
+
+----------------------------------------------------
+
+Report for DecisionTreeClassifier:
+
+             precision    recall  f1-score   support
+
+         no       0.38      0.35      0.37        31
+        yes       0.70      0.72      0.71        64
+
+avg / total       0.59      0.60      0.60        95
+
+----------------------------------------------------
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong> Given the classification report, one can see that MultinomialNB was also better at predicting 'no' and 'yes' classes in both predicion and recall scores too!!! </strong></p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
